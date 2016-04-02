@@ -7,19 +7,196 @@
 //
 
 import UIKit
+import AVFoundation
 
-class ViewController: UIViewController {
-
+class ViewController: UIViewController,UIGestureRecognizerDelegate {
+    
+    var input : AVCaptureDeviceInput!
+    var output : AVCaptureStillImageOutput!
+    var session : AVCaptureSession!
+    var preView : UIView!
+    var camera : AVCaptureDevice!
+    
+    let Strings = ["いいねー","素敵ですよ","いいよー"]
+    var countOfStrings : Int = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        // 画面タップでシャッターを切るための設定
+        let tapGesture:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "tapped:")
+        // デリゲートをセット
+        tapGesture.delegate = self;
+        // Viewに追加.
+        self.view.addGestureRecognizer(tapGesture)
+        
+        countOfStrings = Strings.count
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+    
+    override func viewWillAppear(animated: Bool) {
+        // スクリーン設定
+        setupDisplay()
+        // カメラの設定
+        setupCamera()
+        
+//        let synthesizer = AVSpeechSynthesizer()
+        //let voices = AVSpeechSynthesisVoice.speechVoices()
+        //print(voices)
+        
+        
+//        // 読み上げる文字列を指定する
+//        let utterance = AVSpeechUtterance(string: "こんにちは")
+//
+//        // 読み上げの速度を指定する
+//        utterance.rate = AVSpeechUtteranceMinimumSpeechRate
+//        // 声の高さを指定する
+//        utterance.pitchMultiplier = 1
+//        // 声のボリュームを指定する
+//        utterance.volume = 1.0
+//        
+//        let voice = AVSpeechSynthesisVoice(language:"jp-JP")
+//        utterance.voice = voice
+//        
+//        // 読み上げる
+//        synthesizer.speakUtterance(utterance)
+//        print("読んだ")
+    }
+    // メモリ管理のため
+    override func viewDidDisappear(animated: Bool) {
+        // camera stop メモリ解放
+        session.stopRunning()
+        
+        for output in session.outputs {
+            session.removeOutput(output as? AVCaptureOutput)
+        }
+        
+        for input in session.inputs {
+            session.removeInput(input as? AVCaptureInput)
+        }
+        session = nil
+        camera = nil
+    }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
+    
+    func setupDisplay(){
+        //スクリーンの幅
+        let screenWidth = UIScreen.mainScreen().bounds.size.width;
+        //スクリーンの高さ
+        let screenHeight = UIScreen.mainScreen().bounds.size.height;
+        //ログ
+        print("幅->\(screenWidth)高さ->\(screenHeight)")
+        
+        // プレビュー用のビューを生成
+        preView = UIView(frame: CGRectMake(0.0, 0.0, screenWidth, screenHeight))
+        
+    }
+    
+    func setupCamera(){
+        
+        // セッション
+        session = AVCaptureSession()
+        
+        for caputureDevice: AnyObject in AVCaptureDevice.devices() {
+            // 背面カメラを取得
+            if caputureDevice.position == AVCaptureDevicePosition.Back {
+                camera = caputureDevice as? AVCaptureDevice
+            }
+            // 前面カメラを取得
+            //if caputureDevice.position == AVCaptureDevicePosition.Front {
+            //    camera = caputureDevice as? AVCaptureDevice
+            //}
+        }
+        
+        // カメラからの入力データ
+        do {
+            input = try AVCaptureDeviceInput(device: camera) as AVCaptureDeviceInput
+        } catch let error as NSError {
+            print(error)
+        }
+        
+        // 入力をセッションに追加
+        if(session.canAddInput(input)) {
+            session.addInput(input)
+        }
+        
+        // 静止画出力のインスタンス生成
+        output = AVCaptureStillImageOutput()
+        // 出力をセッションに追加
+        if(session.canAddOutput(output)) {
+            session.addOutput(output)
+        }
+        
+        // セッションからプレビューを表示を
+        let previewLayer = AVCaptureVideoPreviewLayer(session: session)
+        
+        previewLayer.frame = preView.frame
+        
+        //        previewLayer.videoGravity = AVLayerVideoGravityResize
+        //        previewLayer.videoGravity = AVLayerVideoGravityResizeAspect
+        previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+        
+        // レイヤーをViewに設定
+        // これを外すとプレビューが無くなる、けれど撮影はできる
+        self.view.layer.addSublayer(previewLayer)
+        
+        session.startRunning()
+    }
+    
+    
+    // タップイベント.
+    func tapped(sender: UITapGestureRecognizer){
+        print("タップ")
+        
+        let synthesizer = AVSpeechSynthesizer()
+        let randomIndex = Int(arc4random_uniform(UInt32(countOfStrings)))
+        let string = Strings[randomIndex]
+        // 読み上げる文字列を指定する
+        let utterance = AVSpeechUtterance(string: string)
+        
+        // 読み上げの速度を指定する
+        utterance.rate = AVSpeechUtteranceDefaultSpeechRate
+        // 声の高さを指定する
+        utterance.pitchMultiplier = 1
+        // 声のボリュームを指定する
+        utterance.volume = 2.0
+        
+        let voice = AVSpeechSynthesisVoice(language:"jp-JP")
+        utterance.voice = voice
+        
+        // 読み上げる
+        synthesizer.speakUtterance(utterance)
+        print("\(string)を読んだ")
+        
+        takeStillPicture()
+    }
+    
+    func takeStillPicture(){
+        
+        // ビデオ出力に接続.
+        if let connection:AVCaptureConnection? = output.connectionWithMediaType(AVMediaTypeVideo){
+            // ビデオ出力から画像を非同期で取得
+            output.captureStillImageAsynchronouslyFromConnection(connection, completionHandler: { (imageDataBuffer, error) -> Void in
+                
+                // 取得画像のDataBufferをJpegに変換
+                let imageData:NSData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(imageDataBuffer)
+                
+                // JpegからUIImageを作成.
+                let image:UIImage = UIImage(data: imageData)!
+                
+                // アルバムに追加.
+                UIImageWriteToSavedPhotosAlbum(image, self, nil, nil)
+                
+            })
+        }
+    }
 }
 
