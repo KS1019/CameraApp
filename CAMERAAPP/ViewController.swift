@@ -17,14 +17,17 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
     var preView : UIView!
     var camera : AVCaptureDevice!
     
-    let Strings = ["いいねー","素敵ですよ","いいよー","まあまあですね","うーん"]
+    let Strings = ["いいねー","素敵ですよ","いいよー","まあまあですね","うーん","いい感じですね"]
     var countOfStrings : Int = 0
+    
+    let synthesizer = AVSpeechSynthesizer()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         // 画面タップでシャッターを切るための設定
-        let tapGesture:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "tapped:")
+        let tapGesture : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "tapped:")
         // デリゲートをセット
         tapGesture.delegate = self;
         // Viewに追加.
@@ -45,27 +48,24 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         // カメラの設定
         setupCamera()
         
-//        let synthesizer = AVSpeechSynthesizer()
-        //let voices = AVSpeechSynthesisVoice.speechVoices()
-        //print(voices)
+        let synthesizer = AVSpeechSynthesizer()
         
+        // 読み上げる文字列を指定する
+        let utterance = AVSpeechUtterance(string: "こんにちは")
+
+        // 読み上げの速度を指定する
+        utterance.rate = AVSpeechUtteranceDefaultSpeechRate
+        // 声の高さを指定する
+        utterance.pitchMultiplier = 1
+        // 声のボリュームを指定する
+        utterance.volume = 1.0
         
-//        // 読み上げる文字列を指定する
-//        let utterance = AVSpeechUtterance(string: "こんにちは")
-//
-//        // 読み上げの速度を指定する
-//        utterance.rate = AVSpeechUtteranceMinimumSpeechRate
-//        // 声の高さを指定する
-//        utterance.pitchMultiplier = 1
-//        // 声のボリュームを指定する
-//        utterance.volume = 1.0
-//        
-//        let voice = AVSpeechSynthesisVoice(language:"jp-JP")
-//        utterance.voice = voice
-//        
-//        // 読み上げる
-//        synthesizer.speakUtterance(utterance)
-//        print("読んだ")
+        let voice = AVSpeechSynthesisVoice(language:"jp-JP")
+        utterance.voice = voice
+        
+        // 読み上げる
+        synthesizer.speakUtterance(utterance)
+        print("読んだ")
     }
     // メモリ管理のため
     override func viewDidDisappear(animated: Bool) {
@@ -156,7 +156,7 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
     func tapped(sender: UITapGestureRecognizer){
         print("タップ")
         
-        let synthesizer = AVSpeechSynthesizer()
+//        let synthesizer = AVSpeechSynthesizer()
         let randomIndex = Int(arc4random_uniform(UInt32(countOfStrings)))
         let string = Strings[randomIndex]
         // 読み上げる文字列を指定する
