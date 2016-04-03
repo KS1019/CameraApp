@@ -17,7 +17,7 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
     var preView : UIView!
     var camera : AVCaptureDevice!
     
-    let Strings = ["いいねー","素敵ですよ","いいよー"]
+    let Strings = ["いいねー","素敵ですよ","いいよー","まあまあですね","うーん"]
     var countOfStrings : Int = 0
     
     override func viewDidLoad() {
