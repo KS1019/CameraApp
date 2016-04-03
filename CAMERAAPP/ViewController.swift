@@ -18,10 +18,12 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
     var camera : AVCaptureDevice!
     
     let Strings = ["いいねー","素敵ですよ","いいよー","まあまあですね","うーん","いい感じですね"]
+    //let Strings = ["ワイルドだろぉぉ","トゥース","ファンタスティック","心配ないさー","ゲッツ"]
     var countOfStrings : Int = 0
     
     let synthesizer = AVSpeechSynthesizer()
-
+    
+    var isFrontCam = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -107,13 +109,22 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         
         for caputureDevice: AnyObject in AVCaptureDevice.devices() {
             // 背面カメラを取得
-            if caputureDevice.position == AVCaptureDevicePosition.Back {
-                camera = caputureDevice as? AVCaptureDevice
-            }
+            //            if caputureDevice.position == AVCaptureDevicePosition.Back {
+            //                camera = caputureDevice as? AVCaptureDevice
+            //            }
             // 前面カメラを取得
-            //if caputureDevice.position == AVCaptureDevicePosition.Front {
-            //    camera = caputureDevice as? AVCaptureDevice
-            //}
+            //            if caputureDevice.position == AVCaptureDevicePosition.Front {
+            //                camera = caputureDevice as? AVCaptureDevice
+            //            }
+            if isFrontCam {
+                if caputureDevice.position == AVCaptureDevicePosition.Back {
+                    camera = caputureDevice as? AVCaptureDevice
+                }
+            } else if !isFrontCam {
+                if caputureDevice.position == AVCaptureDevicePosition.Front {
+                    camera = caputureDevice as? AVCaptureDevice
+                }
+            }
         }
         
         // カメラからの入力データ
@@ -149,8 +160,27 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         self.view.layer.addSublayer(previewLayer)
         
         session.startRunning()
+        
+        //カメラ
+        
+        let changeCamButton : UIButton = UIButton()
+        changeCamButton.addTarget(self, action: "touchedchangeCamButton", forControlEvents: .TouchUpInside)
+        changeCamButton.frame = CGRectMake(20, 20, 40, 40)
+        changeCamButton.backgroundColor = UIColor.blueColor()
+        self.view.addSubview(changeCamButton)
     }
     
+    
+    func touchedchangeCamButton() {
+        print(__FUNCTION__)
+        if isFrontCam {
+            isFrontCam = false
+        } else if !isFrontCam {
+            isFrontCam = true
+        }
+        session.stopRunning()
+        setupCamera()
+    }
     
     // タップイベント.
     func tapped(sender: UITapGestureRecognizer){
