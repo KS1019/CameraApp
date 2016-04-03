@@ -50,11 +50,9 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         // カメラの設定
         setupCamera()
         
-        let synthesizer = AVSpeechSynthesizer()
         
         // 読み上げる文字列を指定する
         let utterance = AVSpeechUtterance(string: "こんにちは")
-
         // 読み上げの速度を指定する
         utterance.rate = AVSpeechUtteranceDefaultSpeechRate
         // 声の高さを指定する
@@ -108,14 +106,6 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         session = AVCaptureSession()
         
         for caputureDevice: AnyObject in AVCaptureDevice.devices() {
-            // 背面カメラを取得
-            //            if caputureDevice.position == AVCaptureDevicePosition.Back {
-            //                camera = caputureDevice as? AVCaptureDevice
-            //            }
-            // 前面カメラを取得
-            //            if caputureDevice.position == AVCaptureDevicePosition.Front {
-            //                camera = caputureDevice as? AVCaptureDevice
-            //            }
             if isFrontCam {
                 if caputureDevice.position == AVCaptureDevicePosition.Back {
                     camera = caputureDevice as? AVCaptureDevice
@@ -168,6 +158,12 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         changeCamButton.frame = CGRectMake(20, 20, 40, 40)
         changeCamButton.backgroundColor = UIColor.blueColor()
         self.view.addSubview(changeCamButton)
+        
+        let selfTimerButton : UIButton = UIButton()
+        selfTimerButton.addTarget(self, action: "touchedselfTimerButton", forControlEvents: .TouchUpInside)
+        selfTimerButton.frame = CGRectMake(self.view.frame.size.width - 60, 20, 40, 40)
+        selfTimerButton.backgroundColor = UIColor.redColor()
+        self.view.addSubview(selfTimerButton)
     }
     
     
@@ -182,11 +178,34 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         setupCamera()
     }
     
+    func touchedselfTimerButton() {
+        NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: "onUpdate:", userInfo: nil, repeats: false)
+        // 読み上げる文字列を指定する
+        let utterance = AVSpeechUtterance(string: "セルフタイマー")
+        // 読み上げの速度を指定する
+        utterance.rate = AVSpeechUtteranceDefaultSpeechRate
+        // 声の高さを指定する
+        utterance.pitchMultiplier = 1
+        // 声のボリュームを指定する
+        utterance.volume = 1.0
+        
+        let voice = AVSpeechSynthesisVoice(language:"jp-JP")
+        utterance.voice = voice
+        
+        // 読み上げる
+        synthesizer.speakUtterance(utterance)
+        
+    }
+    
+    func onUpdate(timer: NSTimer) {
+        takeStillPicture()
+    }
+    
     // タップイベント.
     func tapped(sender: UITapGestureRecognizer){
         print("タップ")
         
-//        let synthesizer = AVSpeechSynthesizer()
+        // let synthesizer = AVSpeechSynthesizer()
         let randomIndex = Int(arc4random_uniform(UInt32(countOfStrings)))
         let string = Strings[randomIndex]
         // 読み上げる文字列を指定する
