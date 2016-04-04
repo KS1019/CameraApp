@@ -23,7 +23,7 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
     
     let synthesizer = AVSpeechSynthesizer()
     
-    var isFrontCam = true
+    var isFrontCam = false
     
     var timeOfSelfTimer : Int = 10
     
@@ -32,6 +32,8 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
     let countdownLabel : UILabel = UILabel()
     
     var timer : NSTimer = NSTimer()
+    
+    let sizeOfLabel = CGSizeMake((UIScreen.mainScreen().bounds.size.width / 4) * 3, UIScreen.mainScreen().bounds.size.height / 6)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,6 +78,8 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         // 読み上げる
         synthesizer.speakUtterance(utterance)
         print("読んだ")
+        
+        createAnimationLabel()
     }
     // メモリ管理のため
     override func viewDidDisappear(animated: Bool) {
@@ -99,9 +103,9 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
     
     func setupDisplay(){
         //スクリーンの幅
-        let screenWidth = UIScreen.mainScreen().bounds.size.width;
+        let screenWidth = UIScreen.mainScreen().bounds.size.width
         //スクリーンの高さ
-        let screenHeight = UIScreen.mainScreen().bounds.size.height;
+        let screenHeight = UIScreen.mainScreen().bounds.size.height
         //ログ
         print("幅->\(screenWidth)高さ->\(screenHeight)")
         
@@ -210,6 +214,22 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
             print("あと\(timeOfSelfTimer)秒だよ")
             countdownLabel.text = String(timeOfSelfTimer)
             timeOfSelfTimer--
+            if timeOfSelfTimer == 3 {
+                let uString = AVSpeechUtterance(string: "わらってください")
+                // 読み上げの速度を指定する
+                uString.rate = AVSpeechUtteranceDefaultSpeechRate
+                // 声の高さを指定する
+                uString.pitchMultiplier = 1
+                // 声のボリュームを指定する
+                uString.volume = 1.0
+                
+                let voice = AVSpeechSynthesisVoice(language:"jp-JP")
+                uString.voice = voice
+                
+                // 読み上げる
+                synthesizer.speakUtterance(uString)
+                
+            }
         } else if timeOfSelfTimer == 0 {
             let englishStrings = ["nice","good"," fantastic"]
             let countOfEnglishStrings = englishStrings.count
@@ -285,5 +305,36 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
             
         }
     }
+    
+    //ラベル流す関数
+    
+    func createAnimationLabel() {
+        timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "createLabel:", userInfo: nil, repeats: true)
+    }
+    
+    func createLabel(timer: NSTimer) {
+        let animationLabel : UILabel = UILabel()
+        animationLabel.frame.size = sizeOfLabel
+        let randomCGFloat = CGFloat(Int(arc4random_uniform(UInt32(30))))
+        animationLabel.frame.origin = CGPointMake(self.view.bounds.width,randomCGFloat * 20)
+        animationLabel.text = "こんにちは"
+        self.view.addSubview(animationLabel)
+        flowingAnimation(animationLabel)
+    }
+    
+    func flowingAnimation(targetLabel: UILabel){
+//        UIView.animateWithDuration(NSTimeInterval(CGFloat(6.0)),
+//            animations: {() -> Void in
+//                targetLabel.center = CGPoint(x: -1*self.view.bounds.width,y: targetLabel.layer.position.y);
+//            }, completion: {(Bool) -> Void in
+//                targetLabel.removeFromSuperview()
+//        })
+        
+        UIView.animateWithDuration(6.0) { () -> Void in
+            targetLabel.center = CGPointMake(-self.sizeOfLabel.width / 2, targetLabel.frame.height)
+        }
+        
+    }
+
 }
 
