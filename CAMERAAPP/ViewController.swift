@@ -35,6 +35,9 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
     
     let sizeOfLabel = CGSizeMake((UIScreen.mainScreen().bounds.size.width / 4) * 3, UIScreen.mainScreen().bounds.size.height / 6)
     
+    let timeOfAnimation : Float = 5
+    var animatedTime : Float = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -313,13 +316,19 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
     }
     
     func createLabel(timer: NSTimer) {
-        let animationLabel : UILabel = UILabel()
-        animationLabel.frame.size = sizeOfLabel
-        let randomCGFloat = CGFloat(Int(arc4random_uniform(UInt32(30))))
-        animationLabel.frame.origin = CGPointMake(self.view.bounds.width,randomCGFloat * 20)
-        animationLabel.text = "こんにちは"
-        self.view.addSubview(animationLabel)
-        flowingAnimation(animationLabel)
+        if animatedTime <= timeOfAnimation {
+            print("\(animatedTime)")
+            let animationLabel : UILabel = UILabel()
+            animationLabel.frame.size = sizeOfLabel
+            let randomCGFloat = CGFloat(Int(arc4random_uniform(UInt32(30))))
+            animationLabel.frame.origin = CGPointMake(self.view.bounds.width,randomCGFloat * 20)
+            animationLabel.text = "こんにちは"
+            self.view.addSubview(animationLabel)
+            flowingAnimation(animationLabel)
+            animatedTime = animatedTime + 0.1
+        } else {
+          timer.invalidate()
+        }
     }
     
     func flowingAnimation(targetLabel: UILabel){
