@@ -330,8 +330,8 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
 //                targetLabel.removeFromSuperview()
 //        })
         
-        UIView.animateWithDuration(6.0) { () -> Void in
-            targetLabel.center = CGPointMake(-self.sizeOfLabel.width / 2, targetLabel.frame.height)
+        UIView.animateWithDuration(3.0) { () -> Void in
+            targetLabel.center = CGPointMake(-self.sizeOfLabel.width / 2, targetLabel.frame.origin.y)
         }
         
     }
