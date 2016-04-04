@@ -45,6 +45,8 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         
         countOfStrings = Strings.count
         
+        
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -170,6 +172,14 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         selfTimerButton.frame = CGRectMake(self.view.frame.size.width - 60, 20, 40, 40)
         selfTimerButton.backgroundColor = UIColor.redColor()
         self.view.addSubview(selfTimerButton)
+        
+        countdownLabel.frame = CGRectMake(self.view.bounds.width / 2 - 40, self.view.bounds.height / 2 - 40, 80, 80)
+        countdownLabel.textColor = UIColor.blueColor()
+        countdownLabel.backgroundColor = UIColor.clearColor()
+        countdownLabel.hidden = true
+        countdownLabel.textAlignment = NSTextAlignment.Center
+        countdownLabel.font = UIFont.systemFontOfSize(50)
+        self.view.addSubview(countdownLabel)
     }
     
     
@@ -187,14 +197,19 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
     func touchedselfTimerButton() {
         timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "onUpdate:", userInfo: nil, repeats: true)
         selfTimerButton.hidden = true
+        
+        countdownLabel.text = String(timeOfSelfTimer)
+        countdownLabel.hidden = false
+        
 
         
     }
     
     func onUpdate(timer: NSTimer) {
         if timeOfSelfTimer > 0 {
-            timeOfSelfTimer--
             print("あと\(timeOfSelfTimer)秒だよ")
+            countdownLabel.text = String(timeOfSelfTimer)
+            timeOfSelfTimer--
         } else if timeOfSelfTimer == 0 {
             let englishStrings = ["nice","good"," fantastic"]
             let countOfEnglishStrings = englishStrings.count
@@ -217,6 +232,8 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
             // 読み上げる
             synthesizer.speakUtterance(utterance)
             timer.invalidate()
+            
+            countdownLabel.hidden = true
             timeOfSelfTimer = 10
             selfTimerButton.hidden = false
         }
