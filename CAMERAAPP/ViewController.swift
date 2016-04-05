@@ -30,7 +30,8 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
     let selfTimerButton : UIButton = UIButton()
     let changeCamButton : UIButton = UIButton()
     let countdownLabel : UILabel = UILabel()
-    
+    let informationLabel : UILabel = UILabel()
+
     var timer : NSTimer = NSTimer()
     
     let sizeOfLabel = CGSizeMake((UIScreen.mainScreen().bounds.size.width / 4) * 3, UIScreen.mainScreen().bounds.size.height / 6)
@@ -38,6 +39,11 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
     let timeOfAnimation : Float = 5
     var animatedTime : Float = 0
     var stringOfAnimationLabel = "こんにちは"
+    
+    //スクリーンの幅
+    let screenWidth = UIScreen.mainScreen().bounds.size.width
+    //スクリーンの高さ
+    let screenHeight = UIScreen.mainScreen().bounds.size.height
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +56,8 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         self.view.addGestureRecognizer(tapGesture)
         
         countOfStrings = Strings.count
+        
+        
         
         
         
@@ -85,6 +93,12 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         
         createAnimationLabel()
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        UIView.animateWithDuration(3.0) { () -> Void in
+            self.informationLabel.alpha = 0.0
+        }
+    }
     // メモリ管理のため
     override func viewDidDisappear(animated: Bool) {
         // camera stop メモリ解放
@@ -106,13 +120,9 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
     }
     
     func setupDisplay(){
-        //スクリーンの幅
-        let screenWidth = UIScreen.mainScreen().bounds.size.width
-        //スクリーンの高さ
-        let screenHeight = UIScreen.mainScreen().bounds.size.height
+
         //ログ
         print("幅->\(screenWidth)高さ->\(screenHeight)")
-        
         // プレビュー用のビューを生成
         preView = UIView(frame: CGRectMake(0.0, 0.0, screenWidth ,screenHeight))
         
@@ -194,6 +204,16 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         countdownLabel.textAlignment = NSTextAlignment.Center
         countdownLabel.font = UIFont.systemFontOfSize(50)
         self.view.addSubview(countdownLabel)
+        
+        informationLabel.frame.size = CGSizeMake(300, 300)
+        informationLabel.center = CGPointMake(screenWidth / 2, screenHeight / 2)
+        informationLabel.text = "タップして\n写真を撮る"
+        informationLabel.backgroundColor = UIColor.clearColor()
+        informationLabel.font = UIFont.systemFontOfSize(60)
+        informationLabel.textColor = UIColor.blackColor()
+        informationLabel.textAlignment = NSTextAlignment.Center
+        informationLabel.numberOfLines = 2
+        self.view.addSubview(informationLabel)
     }
     
     
