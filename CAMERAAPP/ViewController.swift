@@ -91,7 +91,8 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         synthesizer.speakUtterance(utterance)
         print("読んだ")
         
-        createAnimationLabel()
+        //起動時、ラベルを流す
+        //createAnimationOfLabel()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -179,7 +180,6 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         
         session.startRunning()
         
-        //カメラ
         
         changeCamButton.addTarget(self, action: "touchedchangeCamButton", forControlEvents: .TouchUpInside)
         changeCamButton.frame = CGRectMake(self.view.frame.size.width - 80, 20, 60, 60)
@@ -296,11 +296,11 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         let randomIndex = Int(arc4random_uniform(UInt32(countOfStrings)))
         let string = Strings[randomIndex]
         
-        let random = Int(arc4random_uniform(UInt32(3)))
+        let random = Int(arc4random_uniform(UInt32(4)))
         print("random -> \(random)")
         if random == 2 {
             print("\(string) will strat animation")
-            createAnimationLabel()
+            createAnimationOfLabel()
             stringOfAnimationLabel = string
         }
         // 読み上げる文字列を指定する
@@ -345,7 +345,7 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
     }
     
     //MARK: ラベル流す関数
-    func createAnimationLabel() {
+    func createAnimationOfLabel() {
         print(__FUNCTION__)
         timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "createLabel:", userInfo: nil, repeats: true)
     }
