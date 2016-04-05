@@ -36,7 +36,7 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
     
     let sizeOfLabel = CGSizeMake((UIScreen.mainScreen().bounds.size.width / 4) * 3, UIScreen.mainScreen().bounds.size.height / 6)
     
-    let timeOfAnimation : Float = 5
+    let timeOfAnimation : Float = 3
     var animatedTime : Float = 0
     var stringOfAnimationLabel = "こんにちは"
     
@@ -182,7 +182,7 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         //カメラ
         
         changeCamButton.addTarget(self, action: "touchedchangeCamButton", forControlEvents: .TouchUpInside)
-        changeCamButton.frame = CGRectMake(20, 20, 40, 40)
+        changeCamButton.frame = CGRectMake(self.view.frame.size.width - 80, 20, 60, 60)
         changeCamButton.backgroundColor = UIColor.clearColor()
         changeCamButton.setTitle("●", forState: .Normal)
         changeCamButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
@@ -190,7 +190,7 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         self.view.addSubview(changeCamButton)
         
         selfTimerButton.addTarget(self, action: "touchedselfTimerButton", forControlEvents: .TouchUpInside)
-        selfTimerButton.frame = CGRectMake(self.view.frame.size.width - 60, 20, 40, 40)
+        selfTimerButton.frame = CGRectMake(20, 20, 60, 60)
         selfTimerButton.backgroundColor = UIColor.clearColor()
         selfTimerButton.setTitle("●", forState: .Normal)
         selfTimerButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
