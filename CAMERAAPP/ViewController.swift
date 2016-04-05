@@ -198,7 +198,7 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         self.view.addSubview(selfTimerButton)
         
         countdownLabel.frame = CGRectMake(self.view.bounds.width / 2 - 40, self.view.bounds.height / 2 - 40, 80, 80)
-        countdownLabel.textColor = UIColor.blueColor()
+        countdownLabel.textColor = UIColor.blackColor()
         countdownLabel.backgroundColor = UIColor.clearColor()
         countdownLabel.hidden = true
         countdownLabel.textAlignment = NSTextAlignment.Center
@@ -231,6 +231,7 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
     func touchedselfTimerButton() {
         timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "onUpdate:", userInfo: nil, repeats: true)
         selfTimerButton.hidden = true
+        changeCamButton.hidden = true
         
         countdownLabel.text = String(timeOfSelfTimer)
         countdownLabel.hidden = false
@@ -286,6 +287,7 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
             countdownLabel.hidden = true
             timeOfSelfTimer = 10
             selfTimerButton.hidden = false
+            changeCamButton.hidden = false
         }
     }
     
