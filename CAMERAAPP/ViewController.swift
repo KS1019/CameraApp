@@ -17,7 +17,7 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
     var preView : UIView!
     var camera : AVCaptureDevice!
     
-    let Strings = ["いいねー","素敵ですよ","いいよー","まあまあですね","うーん","いい感じですね"]
+    let Strings = ["いいねー","素敵ですよ","いいよー","まあまあですね","うーん","いい感じですね","くぅぅぅぅ"]
     //let Strings = ["ワイルドだろぉぉ","トゥース","ファンタスティック","心配ないさー","ゲッツ"]
     var countOfStrings : Int = 0
     
@@ -261,7 +261,7 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
                 
             }
         } else if timeOfSelfTimer == 0 {
-            let englishStrings = ["nice","good"," fantastic"]
+            let englishStrings = ["nice","good"," fantastic","wow","great"]
             let countOfEnglishStrings = englishStrings.count
             let randomIndex = Int(arc4random_uniform(UInt32(countOfEnglishStrings)))
             let string = englishStrings[randomIndex]
