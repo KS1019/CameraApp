@@ -295,6 +295,14 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         
         let randomIndex = Int(arc4random_uniform(UInt32(countOfStrings)))
         let string = Strings[randomIndex]
+        
+        let random = Int(arc4random_uniform(UInt32(3)))
+        print("random -> \(random)")
+        if random == 2 {
+            print("\(string) will strat animation")
+            createAnimationLabel()
+            stringOfAnimationLabel = string
+        }
         // 読み上げる文字列を指定する
         let utterance = AVSpeechUtterance(string: string)
         
@@ -338,10 +346,12 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
     
     //MARK: ラベル流す関数
     func createAnimationLabel() {
+        print(__FUNCTION__)
         timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "createLabel:", userInfo: nil, repeats: true)
     }
     
     func createLabel(timer: NSTimer) {
+        print(__FUNCTION__)
         if animatedTime <= timeOfAnimation {
             print("\(animatedTime)")
             let animationLabel : UILabel = UILabel()
@@ -357,11 +367,13 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
             flowingAnimation(animationLabel)
             animatedTime = animatedTime + 0.1
         } else {
-          timer.invalidate()
+            timer.invalidate()
+            animatedTime = 0
         }
     }
     
     func flowingAnimation(targetLabel: UILabel){
+        print(__FUNCTION__)
         UIView.animateWithDuration(3.0) { () -> Void in
             targetLabel.frame.origin = CGPointMake(-self.sizeOfLabel.width, targetLabel.frame.origin.y)
         }
