@@ -114,7 +114,7 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         print("幅->\(screenWidth)高さ->\(screenHeight)")
         
         // プレビュー用のビューを生成
-        preView = UIView(frame: CGRectMake(0.0, 0.0, screenWidth, screenHeight))
+        preView = UIView(frame: CGRectMake(0.0, 0.0, 200 ,200))
         
     }
     
@@ -159,8 +159,8 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         
         previewLayer.frame = preView.frame
         
-        //        previewLayer.videoGravity = AVLayerVideoGravityResize
-        //        previewLayer.videoGravity = AVLayerVideoGravityResizeAspect
+        //previewLayer.videoGravity = AVLayerVideoGravityResize
+        //previewLayer.videoGravity = AVLayerVideoGravityResizeAspect
         previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
         
         // レイヤーをViewに設定
