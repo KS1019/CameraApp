@@ -23,7 +23,7 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
     
     let synthesizer = AVSpeechSynthesizer()
     
-    var isFrontCam = true
+    var isFrontCam = false
     
     var timeOfSelfTimer : Int = 10
     
@@ -114,7 +114,7 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         print("幅->\(screenWidth)高さ->\(screenHeight)")
         
         // プレビュー用のビューを生成
-        preView = UIView(frame: CGRectMake(0.0, 0.0, 200 ,200))
+        preView = UIView(frame: CGRectMake(0.0, 0.0, screenWidth ,screenHeight))
         
     }
     
@@ -173,12 +173,18 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         
         changeCamButton.addTarget(self, action: "touchedchangeCamButton", forControlEvents: .TouchUpInside)
         changeCamButton.frame = CGRectMake(20, 20, 40, 40)
-        changeCamButton.backgroundColor = UIColor.blueColor()
+        changeCamButton.backgroundColor = UIColor.clearColor()
+        changeCamButton.setTitle("●", forState: .Normal)
+        changeCamButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        changeCamButton.titleLabel?.font = UIFont.systemFontOfSize(60)
         self.view.addSubview(changeCamButton)
         
         selfTimerButton.addTarget(self, action: "touchedselfTimerButton", forControlEvents: .TouchUpInside)
         selfTimerButton.frame = CGRectMake(self.view.frame.size.width - 60, 20, 40, 40)
-        selfTimerButton.backgroundColor = UIColor.redColor()
+        selfTimerButton.backgroundColor = UIColor.clearColor()
+        selfTimerButton.setTitle("●", forState: .Normal)
+        selfTimerButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        selfTimerButton.titleLabel?.font = UIFont.systemFontOfSize(60)
         self.view.addSubview(selfTimerButton)
         
         countdownLabel.frame = CGRectMake(self.view.bounds.width / 2 - 40, self.view.bounds.height / 2 - 40, 80, 80)
