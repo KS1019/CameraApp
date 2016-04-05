@@ -23,7 +23,7 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
     
     let synthesizer = AVSpeechSynthesizer()
     
-    var isFrontCam = false
+    var isFrontCam = true
     
     var timeOfSelfTimer : Int = 10
     
@@ -37,6 +37,7 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
     
     let timeOfAnimation : Float = 5
     var animatedTime : Float = 0
+    var stringOfAnimationLabel = "こんにちは"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -321,7 +322,11 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
             animationLabel.frame.size = sizeOfLabel
             let randomCGFloat = CGFloat(Int(arc4random_uniform(UInt32(30))))
             animationLabel.frame.origin = CGPointMake(self.view.bounds.width,randomCGFloat * 20)
-            animationLabel.text = "こんにちは"
+            animationLabel.text = stringOfAnimationLabel
+            animationLabel.textColor = UIColor.whiteColor()
+            animationLabel.backgroundColor = UIColor.clearColor()
+            animationLabel.textAlignment = NSTextAlignment.Center
+            animationLabel.font = UIFont.systemFontOfSize(30)
             self.view.addSubview(animationLabel)
             flowingAnimation(animationLabel)
             animatedTime = animatedTime + 0.1
@@ -332,7 +337,7 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
     
     func flowingAnimation(targetLabel: UILabel){
         UIView.animateWithDuration(3.0) { () -> Void in
-            targetLabel.frame.origin = CGPointMake(-self.sizeOfLabel.width / 2, targetLabel.frame.origin.y)
+            targetLabel.frame.origin = CGPointMake(-self.sizeOfLabel.width, targetLabel.frame.origin.y)
         }
         
     }
