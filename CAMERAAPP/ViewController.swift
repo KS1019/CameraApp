@@ -309,8 +309,7 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         }
     }
     
-    //ラベル流す関数
-    
+    //MARK: ラベル流す関数
     func createAnimationLabel() {
         timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: "createLabel:", userInfo: nil, repeats: true)
     }
@@ -332,15 +331,8 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
     }
     
     func flowingAnimation(targetLabel: UILabel){
-//        UIView.animateWithDuration(NSTimeInterval(CGFloat(6.0)),
-//            animations: {() -> Void in
-//                targetLabel.center = CGPoint(x: -1*self.view.bounds.width,y: targetLabel.layer.position.y);
-//            }, completion: {(Bool) -> Void in
-//                targetLabel.removeFromSuperview()
-//        })
-        
         UIView.animateWithDuration(3.0) { () -> Void in
-            targetLabel.center = CGPointMake(-self.sizeOfLabel.width / 2, targetLabel.frame.origin.y)
+            targetLabel.frame.origin = CGPointMake(-self.sizeOfLabel.width / 2, targetLabel.frame.origin.y)
         }
         
     }
