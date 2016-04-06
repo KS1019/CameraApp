@@ -29,6 +29,8 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
     
     let selfTimerButton : UIButton = UIButton()
     let changeCamButton : UIButton = UIButton()
+    let flashButton : UIButton = UIButton()
+    
     let countdownLabel : UILabel = UILabel()
     let informationLabel : UILabel = UILabel()
 
@@ -196,6 +198,14 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         selfTimerButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         selfTimerButton.titleLabel?.font = UIFont.systemFontOfSize(60)
         self.view.addSubview(selfTimerButton)
+        
+        flashButton.addTarget(self, action: "touchedflashButton", forControlEvents: .TouchUpInside)
+        flashButton.frame = CGRectMake(screenWidth - 30, 20, 60, 60)
+        flashButton.backgroundColor = UIColor.clearColor()
+        flashButton.setTitle("☀︎", forState: .Normal)
+        flashButton.setTitleColor(UIColor.cyanColor(), forState: .Normal)
+        flashButton.titleLabel?.font = UIFont.systemFontOfSize(60)
+        self.view.addSubview(flashButton)
         
         countdownLabel.frame = CGRectMake(self.view.bounds.width / 2 - 40, self.view.bounds.height / 2 - 40, 80, 80)
         countdownLabel.textColor = UIColor.blackColor()
