@@ -250,6 +250,10 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         
     }
     
+    func touchedflashButton() {
+        
+    }
+    
     func onUpdate(timer: NSTimer) {
         if timeOfSelfTimer > 0 {
             print("あと\(timeOfSelfTimer)秒だよ")
