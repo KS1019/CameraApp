@@ -252,6 +252,8 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
     
     func touchedflashButton() {
         
+        
+        
     }
     
     func onUpdate(timer: NSTimer) {
