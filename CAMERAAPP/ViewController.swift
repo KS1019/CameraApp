@@ -200,7 +200,7 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         self.view.addSubview(selfTimerButton)
         
         flashButton.addTarget(self, action: "touchedflashButton", forControlEvents: .TouchUpInside)
-        flashButton.frame = CGRectMake(screenWidth - 30, 20, 60, 60)
+        flashButton.frame = CGRectMake(screenWidth / 2 - 30, 20, 60, 60)
         flashButton.backgroundColor = UIColor.clearColor()
         flashButton.setTitle("☀︎", forState: .Normal)
         flashButton.setTitleColor(UIColor.cyanColor(), forState: .Normal)
@@ -251,7 +251,7 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
     }
     
     func touchedflashButton() {
-        
+        print(__FUNCTION__)
         
         
     }
