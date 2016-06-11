@@ -247,11 +247,10 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
     
     func touchedselfTimerButton() {
         timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "onUpdate:", userInfo: nil, repeats: true)
-        selfTimerButton.hidden = true
-        changeCamButton.hidden = true
+//        selfTimerButton.hidden = true
+//        changeCamButton.hidden = true
         
         countdownLabel.text = String(timeOfSelfTimer)
-        countdownLabel.hidden = false
         
 
         
@@ -264,10 +263,10 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
     }
     
     func onUpdate(timer: NSTimer) {
+        countdownLabel.hidden = false
         if timeOfSelfTimer > 0 {
             print("あと\(timeOfSelfTimer)秒だよ")
-            countdownLabel.text = String(timeOfSelfTimer)
-            timeOfSelfTimer--
+    
             
             let uString = AVSpeechUtterance(string: String(timeOfSelfTimer))
             // 読み上げの速度を指定する
@@ -282,7 +281,8 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
             
             // 読み上げる
             synthesizer.speakUtterance(uString)
-            
+            countdownLabel.text = String(timeOfSelfTimer)
+            timeOfSelfTimer--
             
         } else if timeOfSelfTimer == 0 {
 //            let englishStrings = ["nice","good"," fantastic","wow","great"]
@@ -308,9 +308,9 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
             timer.invalidate()
             
             countdownLabel.hidden = true
-            timeOfSelfTimer = 10
-            selfTimerButton.hidden = false
-            changeCamButton.hidden = false
+            timeOfSelfTimer = 3
+//            selfTimerButton.hidden = false
+//            changeCamButton.hidden = false
         }
     }
     
@@ -360,9 +360,20 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
                 
                 // JpegからUIImageを作成.
                 let image:UIImage = UIImage(data: imageData)!
+                let imageView : UIImageView = UIImageView()
+                imageView.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height)
+                imageView.image = image
+                self.view.addSubview(imageView)
+                
+                let button : UIButton = UIButton()
+                button.titleLabel?.text = "これでOKですか?"
+                button.frame = CGRectMake(UIScreen.mainScreen().bounds.width / 2 - 50, 10, 100, 40)
+                button.backgroundColor = UIColor.whiteColor()
+                button.titleLabel?.textColor = UIColor.redColor()
+                self.view.addSubview(button)
                 
                 // アルバムに追加.
-                UIImageWriteToSavedPhotosAlbum(image, self, nil, nil)
+                //UIImageWriteToSavedPhotosAlbum(image, self, nil, nil)
                 
             })
             
