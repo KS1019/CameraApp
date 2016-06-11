@@ -25,14 +25,14 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
     
     var isFrontCam = false
     
-    var timeOfSelfTimer : Int = 10
+    var timeOfSelfTimer : Int = 3
     
-    let selfTimerButton : UIButton = UIButton()
-    let changeCamButton : UIButton = UIButton()
-    let flashButton : UIButton = UIButton()
+//    let selfTimerButton : UIButton = UIButton()
+//    let changeCamButton : UIButton = UIButton()
+//    let flashButton : UIButton = UIButton()
     
     let countdownLabel : UILabel = UILabel()
-    let informationLabel : UILabel = UILabel()
+    //let informationLabel : UILabel = UILabel()
 
     var timer : NSTimer = NSTimer()
     
@@ -51,11 +51,11 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         // 画面タップでシャッターを切るための設定
-        let tapGesture : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "tapped:")
+        //let tapGesture : UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "tapped:")
         // デリゲートをセット
-        tapGesture.delegate = self;
+        //tapGesture.delegate = self;
         // Viewに追加.
-        self.view.addGestureRecognizer(tapGesture)
+        //self.view.addGestureRecognizer(tapGesture)
         
         countOfStrings = Strings.count
         
@@ -63,6 +63,10 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         
         
         
+    }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return true
     }
     
     override func didReceiveMemoryWarning() {
@@ -78,7 +82,7 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         
         
         // 読み上げる文字列を指定する
-        let utterance = AVSpeechUtterance(string: "こんにちは")
+        let utterance = AVSpeechUtterance(string: "3秒後にさつえいします。")
         // 読み上げの速度を指定する
         utterance.rate = AVSpeechUtteranceDefaultSpeechRate
         // 声の高さを指定する
@@ -93,14 +97,19 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         synthesizer.speakUtterance(utterance)
         print("読んだ")
         
+        touchedselfTimerButton()
         //起動時、ラベルを流す
         //createAnimationOfLabel()
     }
     
+    func takePicture() {
+        
+    }
+    
     override func viewDidAppear(animated: Bool) {
-        UIView.animateWithDuration(3.0) { () -> Void in
-            self.informationLabel.alpha = 0.0
-        }
+//        UIView.animateWithDuration(3.0) { () -> Void in
+//            self.informationLabel.alpha = 0.0
+//        }
     }
     // メモリ管理のため
     override func viewDidDisappear(animated: Bool) {
@@ -118,9 +127,7 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         camera = nil
     }
     
-    override func prefersStatusBarHidden() -> Bool {
-        return true
-    }
+
     
     func setupDisplay(){
 
@@ -183,29 +190,29 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         session.startRunning()
         
         
-        changeCamButton.addTarget(self, action: "touchedchangeCamButton", forControlEvents: .TouchUpInside)
-        changeCamButton.frame = CGRectMake(self.view.frame.size.width - 80, 20, 60, 60)
-        changeCamButton.backgroundColor = UIColor.clearColor()
-        changeCamButton.setTitle("●", forState: .Normal)
-        changeCamButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
-        changeCamButton.titleLabel?.font = UIFont.systemFontOfSize(60)
-        self.view.addSubview(changeCamButton)
-        
-        selfTimerButton.addTarget(self, action: "touchedselfTimerButton", forControlEvents: .TouchUpInside)
-        selfTimerButton.frame = CGRectMake(20, 20, 60, 60)
-        selfTimerButton.backgroundColor = UIColor.clearColor()
-        selfTimerButton.setTitle("●", forState: .Normal)
-        selfTimerButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        selfTimerButton.titleLabel?.font = UIFont.systemFontOfSize(60)
-        self.view.addSubview(selfTimerButton)
-        
-        flashButton.addTarget(self, action: "touchedflashButton", forControlEvents: .TouchUpInside)
-        flashButton.frame = CGRectMake(screenWidth / 2 - 30, 20, 60, 60)
-        flashButton.backgroundColor = UIColor.clearColor()
-        flashButton.setTitle("☀︎", forState: .Normal)
-        flashButton.setTitleColor(UIColor.cyanColor(), forState: .Normal)
-        flashButton.titleLabel?.font = UIFont.systemFontOfSize(60)
-        self.view.addSubview(flashButton)
+//        changeCamButton.addTarget(self, action: "touchedchangeCamButton", forControlEvents: .TouchUpInside)
+//        changeCamButton.frame = CGRectMake(self.view.frame.size.width - 80, 20, 60, 60)
+//        changeCamButton.backgroundColor = UIColor.clearColor()
+//        changeCamButton.setTitle("●", forState: .Normal)
+//        changeCamButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+//        changeCamButton.titleLabel?.font = UIFont.systemFontOfSize(60)
+//        self.view.addSubview(changeCamButton)
+//        
+//        selfTimerButton.addTarget(self, action: "touchedselfTimerButton", forControlEvents: .TouchUpInside)
+//        selfTimerButton.frame = CGRectMake(20, 20, 60, 60)
+//        selfTimerButton.backgroundColor = UIColor.clearColor()
+//        selfTimerButton.setTitle("●", forState: .Normal)
+//        selfTimerButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+//        selfTimerButton.titleLabel?.font = UIFont.systemFontOfSize(60)
+//        self.view.addSubview(selfTimerButton)
+//        
+//        flashButton.addTarget(self, action: "touchedflashButton", forControlEvents: .TouchUpInside)
+//        flashButton.frame = CGRectMake(screenWidth / 2 - 30, 20, 60, 60)
+//        flashButton.backgroundColor = UIColor.clearColor()
+//        flashButton.setTitle("☀︎", forState: .Normal)
+//        flashButton.setTitleColor(UIColor.cyanColor(), forState: .Normal)
+//        flashButton.titleLabel?.font = UIFont.systemFontOfSize(60)
+//        self.view.addSubview(flashButton)
         
         countdownLabel.frame = CGRectMake(self.view.bounds.width / 2 - 40, self.view.bounds.height / 2 - 40, 80, 80)
         countdownLabel.textColor = UIColor.blackColor()
@@ -215,15 +222,15 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         countdownLabel.font = UIFont.systemFontOfSize(50)
         self.view.addSubview(countdownLabel)
         
-        informationLabel.frame.size = CGSizeMake(300, 300)
-        informationLabel.center = CGPointMake(screenWidth / 2, screenHeight / 2)
-        informationLabel.text = "タップして\n写真を撮る"
-        informationLabel.backgroundColor = UIColor.clearColor()
-        informationLabel.font = UIFont.systemFontOfSize(60)
-        informationLabel.textColor = UIColor.blackColor()
-        informationLabel.textAlignment = NSTextAlignment.Center
-        informationLabel.numberOfLines = 2
-        self.view.addSubview(informationLabel)
+//        informationLabel.frame.size = CGSizeMake(300, 300)
+//        informationLabel.center = CGPointMake(screenWidth / 2, screenHeight / 2)
+//        informationLabel.text = "タップして\n写真を撮る"
+//        informationLabel.backgroundColor = UIColor.clearColor()
+//        informationLabel.font = UIFont.systemFontOfSize(60)
+//        informationLabel.textColor = UIColor.blackColor()
+//        informationLabel.textAlignment = NSTextAlignment.Center
+//        informationLabel.numberOfLines = 2
+//        self.view.addSubview(informationLabel)
     }
     
     
@@ -261,43 +268,43 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
             print("あと\(timeOfSelfTimer)秒だよ")
             countdownLabel.text = String(timeOfSelfTimer)
             timeOfSelfTimer--
-            if timeOfSelfTimer == 3 {
-                let uString = AVSpeechUtterance(string: "わらってください")
-                // 読み上げの速度を指定する
-                uString.rate = AVSpeechUtteranceDefaultSpeechRate
-                // 声の高さを指定する
-                uString.pitchMultiplier = 1
-                // 声のボリュームを指定する
-                uString.volume = 1.0
-                
-                let voice = AVSpeechSynthesisVoice(language:"jp-JP")
-                uString.voice = voice
-                
-                // 読み上げる
-                synthesizer.speakUtterance(uString)
-                
-            }
-        } else if timeOfSelfTimer == 0 {
-            let englishStrings = ["nice","good"," fantastic","wow","great"]
-            let countOfEnglishStrings = englishStrings.count
-            let randomIndex = Int(arc4random_uniform(UInt32(countOfEnglishStrings)))
-            let string = englishStrings[randomIndex]
-            // 読み上げる文字列を指定する
-            let utterance = AVSpeechUtterance(string: string)
             
+            let uString = AVSpeechUtterance(string: String(timeOfSelfTimer))
             // 読み上げの速度を指定する
-            utterance.rate = AVSpeechUtteranceDefaultSpeechRate
+            uString.rate = AVSpeechUtteranceDefaultSpeechRate
             // 声の高さを指定する
-            utterance.pitchMultiplier = 1
+            uString.pitchMultiplier = 1
             // 声のボリュームを指定する
-            utterance.volume = 2.0
+            uString.volume = 1.0
             
-            let voice = AVSpeechSynthesisVoice(language:"en-US")
-            utterance.voice = voice
+            let voice = AVSpeechSynthesisVoice(language:"jp-JP")
+            uString.voice = voice
+            
+            // 読み上げる
+            synthesizer.speakUtterance(uString)
+            
+            
+        } else if timeOfSelfTimer == 0 {
+//            let englishStrings = ["nice","good"," fantastic","wow","great"]
+//            let countOfEnglishStrings = englishStrings.count
+//            let randomIndex = Int(arc4random_uniform(UInt32(countOfEnglishStrings)))
+//            let string = englishStrings[randomIndex]
+//            // 読み上げる文字列を指定する
+//            let utterance = AVSpeechUtterance(string: string)
+//            
+//            // 読み上げの速度を指定する
+//            utterance.rate = AVSpeechUtteranceDefaultSpeechRate
+//            // 声の高さを指定する
+//            utterance.pitchMultiplier = 1
+//            // 声のボリュームを指定する
+//            utterance.volume = 2.0
+//            
+//            let voice = AVSpeechSynthesisVoice(language:"en-US")
+//            utterance.voice = voice
             
             takeStillPicture()
-            // 読み上げる
-            synthesizer.speakUtterance(utterance)
+//            // 読み上げる
+//            synthesizer.speakUtterance(utterance)
             timer.invalidate()
             
             countdownLabel.hidden = true
