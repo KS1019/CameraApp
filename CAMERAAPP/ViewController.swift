@@ -23,13 +23,14 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
     
     let synthesizer = AVSpeechSynthesizer()
     
-    var isFrontCam = false
+    var isFrontCam = true
     
     var timeOfSelfTimer : Int = 3
     
 //    let selfTimerButton : UIButton = UIButton()
 //    let changeCamButton : UIButton = UIButton()
 //    let flashButton : UIButton = UIButton()
+    let takingButton : UIButton = UIButton()
     
     let countdownLabel : UILabel = UILabel()
     //let informationLabel : UILabel = UILabel()
@@ -97,7 +98,7 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         synthesizer.speakUtterance(utterance)
         print("読んだ")
         
-        touchedselfTimerButton()
+        //touchedselfTimerButton()
         //起動時、ラベルを流す
         //createAnimationOfLabel()
     }
@@ -134,7 +135,7 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         //ログ
         print("幅->\(screenWidth)高さ->\(screenHeight)")
         // プレビュー用のビューを生成
-        preView = UIView(frame: CGRectMake(0.0, 0.0, screenWidth ,screenHeight))
+        preView = UIView(frame: CGRectMake(0.0, 0.0, screenWidth ,screenWidth))
         
     }
     
@@ -190,6 +191,13 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         session.startRunning()
         
         
+        takingButton.addTarget(self, action:"touchedtakingButton", forControlEvents: .TouchUpInside)
+        takingButton.frame = CGRectMake(screenWidth / 2 - 100, (screenHeight - screenWidth) / 2 + screenWidth - 50, 200, 100)
+        takingButton.layer.cornerRadius = 50
+        takingButton.backgroundColor = UIColor.cyanColor()
+        self.view.addSubview(takingButton)
+        
+        
 //        changeCamButton.addTarget(self, action: "touchedchangeCamButton", forControlEvents: .TouchUpInside)
 //        changeCamButton.frame = CGRectMake(self.view.frame.size.width - 80, 20, 60, 60)
 //        changeCamButton.backgroundColor = UIColor.clearColor()
@@ -231,6 +239,10 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
 //        informationLabel.textAlignment = NSTextAlignment.Center
 //        informationLabel.numberOfLines = 2
 //        self.view.addSubview(informationLabel)
+    }
+    
+    func touchedtakingButton() {
+        takeStillPicture()
     }
     
     
@@ -360,24 +372,37 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
                 
                 // JpegからUIImageを作成.
                 let image:UIImage = UIImage(data: imageData)!
+                UIImageWriteToSavedPhotosAlbum(image, self, nil, nil)
                 let imageView : UIImageView = UIImageView()
-                imageView.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.height)
-                imageView.image = image
+                imageView.frame = CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, UIScreen.mainScreen().bounds.width)
+                var cropImage = UIImage()
+                cropImage = self.cropImageToSquare(image)!
+                imageView.image = cropImage
                 self.view.addSubview(imageView)
+                UIView.animateWithDuration(2.0, animations: {
+                    imageView.alpha = 0
+                },completion: { finished in
+                    imageView.removeFromSuperview()
+                })
                 
-                let button : UIButton = UIButton()
-                button.titleLabel?.text = "これでOKですか?"
-                button.frame = CGRectMake(UIScreen.mainScreen().bounds.width / 2 - 50, 10, 100, 40)
-                button.backgroundColor = UIColor.whiteColor()
-                button.titleLabel?.textColor = UIColor.redColor()
-                self.view.addSubview(button)
+//                let button : UIButton = UIButton()
+//                button.setTitle("これでOKですか？", forState: .Normal)
+//                button.setTitleColor(UIColor.redColor(), forState: .Normal)
+//                button.frame = CGRectMake(UIScreen.mainScreen().bounds.width / 2 - 150, 10, 300, 100)
+//                button.backgroundColor = UIColor.whiteColor()
+//                button.addTarget(self, action: "buttonTapped:", forControlEvents: .TouchUpInside)
+//                self.view.addSubview(button)
                 
                 // アルバムに追加.
-                //UIImageWriteToSavedPhotosAlbum(image, self, nil, nil)
+                UIImageWriteToSavedPhotosAlbum(cropImage, self, nil, nil)
                 
             })
             
         }
+    }
+    
+    func buttonTapped() {
+        
     }
     
     //MARK: ラベル流す関数
@@ -414,6 +439,24 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
             targetLabel.frame.origin = CGPointMake(-self.sizeOfLabel.width, targetLabel.frame.origin.y)
         }
         
+    }
+    
+    func cropImageToSquare(image: UIImage) -> UIImage? {
+        if image.size.width > image.size.height {
+            // 横長
+            print("横長")
+            let cropCGImageRef = CGImageCreateWithImageInRect(image.CGImage, CGRectMake(image.size.width/2 - image.size.height/2, 0, image.size.height, image.size.height))
+            
+            return UIImage(CGImage: cropCGImageRef!, scale: image.scale, orientation: image.imageOrientation)
+        } else if image.size.width < image.size.height {
+            // 縦長
+            print("縦長")
+            let cropCGImageRef = CGImageCreateWithImageInRect(image.CGImage, CGRectMake(0, CGFloat(146), image.size.width, image.size.width))
+            
+            return UIImage(CGImage: cropCGImageRef!, scale: image.scale, orientation: image.imageOrientation)
+        } else {
+            return image
+        }
     }
 
 }
