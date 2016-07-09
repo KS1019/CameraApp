@@ -34,6 +34,9 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
     
     let countdownLabel : UILabel = UILabel()
     //let informationLabel : UILabel = UILabel()
+    let tagsLabel : UILabel = UILabel()
+    
+    
 
     var timer : NSTimer = NSTimer()
     
@@ -60,8 +63,9 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         
         countOfStrings = Strings.count
         
-        
-        
+        print(makeSentence())
+        tagsLabel.text = makeSentence()
+        //tagsLabel.fontSizeToFit()
         
         
     }
@@ -221,6 +225,13 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
 //        flashButton.setTitleColor(UIColor.cyanColor(), forState: .Normal)
 //        flashButton.titleLabel?.font = UIFont.systemFontOfSize(60)
 //        self.view.addSubview(flashButton)
+        
+        tagsLabel.frame = CGRectMake(0, screenWidth, screenWidth, 100)
+        tagsLabel.textColor = UIColor.cyanColor()
+        tagsLabel.backgroundColor = UIColor.clearColor()
+        tagsLabel.numberOfLines = 0
+        self.view.addSubview(tagsLabel)
+        //tagsLabel.text = " "
         
         countdownLabel.frame = CGRectMake(self.view.bounds.width / 2 - 40, self.view.bounds.height / 2 - 40, 80, 80)
         countdownLabel.textColor = UIColor.blackColor()
@@ -451,12 +462,145 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         } else if image.size.width < image.size.height {
             // 縦長
             print("縦長")
-            let cropCGImageRef = CGImageCreateWithImageInRect(image.CGImage, CGRectMake(0, CGFloat(146), image.size.width, image.size.width))
+            let cropCGImageRef = CGImageCreateWithImageInRect(image.CGImage, CGRectMake(0, CGFloat((screenHeight - screenWidth) / 2), image.size.width, image.size.width))
             
             return UIImage(CGImage: cropCGImageRef!, scale: image.scale, orientation: image.imageOrientation)
         } else {
             return image
         }
+    }
+    
+    func makeSentence() -> String {
+        var when: [[String]] = []
+        var whenString = String()
+        if let csvPath = NSBundle.mainBundle().pathForResource("when", ofType: "csv") {
+            var csvString=""
+            do{
+                csvString = try NSString(contentsOfFile: csvPath, encoding: NSUTF8StringEncoding) as String
+            } catch let error as NSError {
+                print(error.localizedDescription)
+            }
+            
+            csvString.enumerateLines { (line, stop) -> () in
+                when.append(line.componentsSeparatedByString(","))
+                
+            }
+            print(when)
+            whenString = when[0][createIndex(when[0].count)]
+            print(whenString)
+            
+        }
+        
+        var who: [[String]] = []
+        var whoString = String()
+        if let csvPath = NSBundle.mainBundle().pathForResource("who", ofType: "csv") {
+            var csvString=""
+            do{
+                csvString = try NSString(contentsOfFile: csvPath, encoding: NSUTF8StringEncoding) as String
+            } catch let error as NSError {
+                print(error.localizedDescription)
+            }
+            
+            csvString.enumerateLines { (line, stop) -> () in
+                who.append(line.componentsSeparatedByString(","))
+                
+            }
+            print(who)
+            whoString = who[0][createIndex(who[0].count)]
+            print(whoString)
+            
+        }
+        
+        var wheres: [[String]] = []
+        var wheresString = String()
+        if let csvPath = NSBundle.mainBundle().pathForResource("where", ofType: "csv") {
+            var csvString=""
+            do{
+                csvString = try NSString(contentsOfFile: csvPath, encoding: NSUTF8StringEncoding) as String
+            } catch let error as NSError {
+                print(error.localizedDescription)
+            }
+            
+            csvString.enumerateLines { (line, stop) -> () in
+                wheres.append(line.componentsSeparatedByString(","))
+                
+            }
+            print(wheres)
+            wheresString = wheres[0][createIndex(wheres[0].count)]
+            print(wheresString)
+            
+        }
+        
+        var why: [[String]] = []
+        var whyString = String()
+        if let csvPath = NSBundle.mainBundle().pathForResource("why", ofType: "csv") {
+            var csvString=""
+            do{
+                csvString = try NSString(contentsOfFile: csvPath, encoding: NSUTF8StringEncoding) as String
+            } catch let error as NSError {
+                print(error.localizedDescription)
+            }
+            
+            csvString.enumerateLines { (line, stop) -> () in
+                why.append(line.componentsSeparatedByString(","))
+                
+            }
+            print(why)
+            whyString = why[0][createIndex(why[0].count)]
+            print(whyString)
+            
+        }
+        
+        var how: [[String]] = []
+        var howString = String()
+        if let csvPath = NSBundle.mainBundle().pathForResource("how", ofType: "csv") {
+            var csvString=""
+            do{
+                csvString = try NSString(contentsOfFile: csvPath, encoding: NSUTF8StringEncoding) as String
+            } catch let error as NSError {
+                print(error.localizedDescription)
+            }
+            
+            csvString.enumerateLines { (line, stop) -> () in
+                how.append(line.componentsSeparatedByString(","))
+                
+            }
+            print(how)
+            howString = how[0][createIndex(how[0].count)]
+            print(howString)
+            
+        }
+        
+        var what: [[String]] = []
+        var whatString = String()
+        if let csvPath = NSBundle.mainBundle().pathForResource("what", ofType: "csv") {
+            var csvString=""
+            do{
+                csvString = try NSString(contentsOfFile: csvPath, encoding: NSUTF8StringEncoding) as String
+            } catch let error as NSError {
+                print(error.localizedDescription)
+            }
+            
+            csvString.enumerateLines { (line, stop) -> () in
+                what.append(line.componentsSeparatedByString(","))
+                
+            }
+            print(what)
+            whatString = what[0][createIndex(what[0].count)]
+            print(whatString)
+            
+        }
+        
+        let sentence = " #" + whenString + " #" + whoString + " #" + wheresString + " #" + whyString + " #" + howString + " #" + whatString
+        return sentence
+        
+        
+        
+    }
+    
+    func createIndex(countOfArray:Int) -> Int {
+        let randomIndex = Int(arc4random_uniform(UInt32(countOfArray)))
+        return randomIndex
     }
 
 }
