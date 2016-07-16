@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--First View Controller-->
         <scene sceneID="DLd-9D-MOY">
             <objects>
-                <viewController id="C8O-ul-Bnr" sceneMemberID="viewController">
+                <viewController id="C8O-ul-Bnr" customClass="FirstViewController" customModule="CAMERAAPP" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8sP-Fh-qO4"/>
                         <viewControllerLayoutGuide type="bottom" id="K2r-e9-zK2"/>
@@ -98,6 +98,14 @@
                             <constraint firstItem="VRH-5s-N7i" firstAttribute="centerY" secondItem="3kt-c3-vQm" secondAttribute="centerY" constant="121.5" id="pDg-io-Pzj"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="howLabel" destination="oXp-43-AtG" id="s63-AY-90l"/>
+                        <outlet property="whatLabel" destination="5cB-eF-bwK" id="oDk-BJ-pTI"/>
+                        <outlet property="whenLabel" destination="0WL-iR-eft" id="ycA-Yo-ovs"/>
+                        <outlet property="wheresLabel" destination="BJP-Ma-j56" id="AEI-cA-He2"/>
+                        <outlet property="whoLabel" destination="VRH-5s-N7i" id="YDg-C6-5FH"/>
+                        <outlet property="whyLabel" destination="mQy-17-uBo" id="dSB-Tm-Lop"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ppB-CJ-MJb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

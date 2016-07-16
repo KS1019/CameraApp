@@ -63,8 +63,8 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         
         countOfStrings = Strings.count
         
-        print(makeSentence())
-        tagsLabel.text = makeSentence()
+        //print(makeSentence())
+        //tagsLabel.text = makeSentence()
         //tagsLabel.fontSizeToFit()
         
         

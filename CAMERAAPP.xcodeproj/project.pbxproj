@@ -22,6 +22,7 @@
 		7C34A7A01CAFC78600A2BFD3 /* CAMERAAPPTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C34A79F1CAFC78600A2BFD3 /* CAMERAAPPTests.swift */; };
 		7C34A7AB1CAFC78600A2BFD3 /* CAMERAAPPUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C34A7AA1CAFC78600A2BFD3 /* CAMERAAPPUITests.swift */; };
 		7C34A7B91CAFC9DF00A2BFD3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C34A7B81CAFC9DF00A2BFD3 /* AVFoundation.framework */; };
+		7CFA5E5D1D3654A800A2CD4C /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CFA5E5C1D3654A800A2CD4C /* FirstViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		7C34A7AA1CAFC78600A2BFD3 /* CAMERAAPPUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CAMERAAPPUITests.swift; sourceTree = "<group>"; };
 		7C34A7AC1CAFC78600A2BFD3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7C34A7B81CAFC9DF00A2BFD3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		7CFA5E5C1D3654A800A2CD4C /* FirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +133,7 @@
 				7C34A78A1CAFC78600A2BFD3 /* AppDelegate.swift */,
 				7C34A78C1CAFC78600A2BFD3 /* ViewController.swift */,
 				7C34A78E1CAFC78600A2BFD3 /* Main.storyboard */,
+				7CFA5E5C1D3654A800A2CD4C /* FirstViewController.swift */,
 				7C2E0AD91D3100C1002FD970 /* UILabel+FontSizeToFit.swift */,
 				7C34A7911CAFC78600A2BFD3 /* Assets.xcassets */,
 				7C34A7931CAFC78600A2BFD3 /* LaunchScreen.storyboard */,
@@ -298,6 +301,7 @@
 				7C34A78D1CAFC78600A2BFD3 /* ViewController.swift in Sources */,
 				7C34A78B1CAFC78600A2BFD3 /* AppDelegate.swift in Sources */,
 				7C2E0ADA1D3100C1002FD970 /* UILabel+FontSizeToFit.swift in Sources */,
+				7CFA5E5D1D3654A800A2CD4C /* FirstViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
