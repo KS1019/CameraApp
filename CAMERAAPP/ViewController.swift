@@ -470,7 +470,7 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
         }
     }
     
-    func makeSentence() -> String {
+    func makeSentence() -> [String] {
         var when: [[String]] = []
         var whenString = String()
         if let csvPath = NSBundle.mainBundle().pathForResource("when", ofType: "csv") {
@@ -591,7 +591,15 @@ class ViewController: UIViewController,UIGestureRecognizerDelegate {
             
         }
         
-        let sentence = " #" + whenString + " #" + whoString + " #" + wheresString + " #" + whyString + " #" + howString + " #" + whatString
+        var sentence = [String]()
+        //" #" + whenString + " #" + whoString + " #" + wheresString + " #" + whyString + " #" + howString + " #" + whatString
+        sentence.append(whenString)
+        sentence.append(whoString)
+        sentence.append(wheresString)
+        sentence.append(whyString)
+        sentence.append(howString)
+        sentence.append(whatString)
+        
         return sentence
         
         
