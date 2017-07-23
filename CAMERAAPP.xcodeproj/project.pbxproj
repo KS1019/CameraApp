@@ -7,12 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7C2E0AD31D30EE5A002FD970 /* what.csv in Resources */ = {isa = PBXBuildFile; fileRef = 7C2E0ACD1D30EE5A002FD970 /* what.csv */; };
-		7C2E0AD41D30EE5A002FD970 /* how.csv in Resources */ = {isa = PBXBuildFile; fileRef = 7C2E0ACE1D30EE5A002FD970 /* how.csv */; };
-		7C2E0AD51D30EE5A002FD970 /* why.csv in Resources */ = {isa = PBXBuildFile; fileRef = 7C2E0ACF1D30EE5A002FD970 /* why.csv */; };
-		7C2E0AD61D30EE5A002FD970 /* where.csv in Resources */ = {isa = PBXBuildFile; fileRef = 7C2E0AD01D30EE5A002FD970 /* where.csv */; };
-		7C2E0AD71D30EE5A002FD970 /* who.csv in Resources */ = {isa = PBXBuildFile; fileRef = 7C2E0AD11D30EE5A002FD970 /* who.csv */; };
-		7C2E0AD81D30EE5A002FD970 /* when.csv in Resources */ = {isa = PBXBuildFile; fileRef = 7C2E0AD21D30EE5A002FD970 /* when.csv */; };
 		7C2E0ADA1D3100C1002FD970 /* UILabel+FontSizeToFit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2E0AD91D3100C1002FD970 /* UILabel+FontSizeToFit.swift */; };
 		7C34A78B1CAFC78600A2BFD3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C34A78A1CAFC78600A2BFD3 /* AppDelegate.swift */; };
 		7C34A78D1CAFC78600A2BFD3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C34A78C1CAFC78600A2BFD3 /* ViewController.swift */; };
@@ -22,6 +16,12 @@
 		7C34A7A01CAFC78600A2BFD3 /* CAMERAAPPTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C34A79F1CAFC78600A2BFD3 /* CAMERAAPPTests.swift */; };
 		7C34A7AB1CAFC78600A2BFD3 /* CAMERAAPPUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C34A7AA1CAFC78600A2BFD3 /* CAMERAAPPUITests.swift */; };
 		7C34A7B91CAFC9DF00A2BFD3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C34A7B81CAFC9DF00A2BFD3 /* AVFoundation.framework */; };
+		7C4503E51D83D355005B2740 /* what.csv in Resources */ = {isa = PBXBuildFile; fileRef = 7C4503E41D83D355005B2740 /* what.csv */; };
+		7C4503E71D83D37D005B2740 /* how.csv in Resources */ = {isa = PBXBuildFile; fileRef = 7C4503E61D83D37D005B2740 /* how.csv */; };
+		7C4503EC1D83D8AD005B2740 /* why.csv in Resources */ = {isa = PBXBuildFile; fileRef = 7C4503E81D83D8AD005B2740 /* why.csv */; };
+		7C4503ED1D83D8AD005B2740 /* where.csv in Resources */ = {isa = PBXBuildFile; fileRef = 7C4503E91D83D8AD005B2740 /* where.csv */; };
+		7C4503EE1D83D8AD005B2740 /* who.csv in Resources */ = {isa = PBXBuildFile; fileRef = 7C4503EA1D83D8AD005B2740 /* who.csv */; };
+		7C4503EF1D83D8AD005B2740 /* when.csv in Resources */ = {isa = PBXBuildFile; fileRef = 7C4503EB1D83D8AD005B2740 /* when.csv */; };
 		7CFA5E5D1D3654A800A2CD4C /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CFA5E5C1D3654A800A2CD4C /* FirstViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -43,12 +43,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		7C2E0ACD1D30EE5A002FD970 /* what.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = what.csv; path = ../../../what.csv; sourceTree = "<group>"; };
-		7C2E0ACE1D30EE5A002FD970 /* how.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = how.csv; path = ../../../how.csv; sourceTree = "<group>"; };
-		7C2E0ACF1D30EE5A002FD970 /* why.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = why.csv; path = ../../../why.csv; sourceTree = "<group>"; };
-		7C2E0AD01D30EE5A002FD970 /* where.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = where.csv; path = ../../../where.csv; sourceTree = "<group>"; };
-		7C2E0AD11D30EE5A002FD970 /* who.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = who.csv; path = ../../../who.csv; sourceTree = "<group>"; };
-		7C2E0AD21D30EE5A002FD970 /* when.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = when.csv; path = ../../../when.csv; sourceTree = "<group>"; };
 		7C2E0AD91D3100C1002FD970 /* UILabel+FontSizeToFit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UILabel+FontSizeToFit.swift"; path = "../../../../Downloads/UILabel-FontSizeToFit-master/Swift/UILabel_FontSizeToFit/UILabel+FontSizeToFit.swift"; sourceTree = "<group>"; };
 		7C34A7871CAFC78600A2BFD3 /* CAMERAAPP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CAMERAAPP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C34A78A1CAFC78600A2BFD3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -64,6 +58,12 @@
 		7C34A7AA1CAFC78600A2BFD3 /* CAMERAAPPUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CAMERAAPPUITests.swift; sourceTree = "<group>"; };
 		7C34A7AC1CAFC78600A2BFD3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7C34A7B81CAFC9DF00A2BFD3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		7C4503E41D83D355005B2740 /* what.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = what.csv; path = ../../what.csv; sourceTree = "<group>"; };
+		7C4503E61D83D37D005B2740 /* how.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = how.csv; path = ../../how.csv; sourceTree = "<group>"; };
+		7C4503E81D83D8AD005B2740 /* why.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = why.csv; path = ../../why.csv; sourceTree = "<group>"; };
+		7C4503E91D83D8AD005B2740 /* where.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = where.csv; path = ../../where.csv; sourceTree = "<group>"; };
+		7C4503EA1D83D8AD005B2740 /* who.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = who.csv; path = ../../who.csv; sourceTree = "<group>"; };
+		7C4503EB1D83D8AD005B2740 /* when.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = when.csv; path = ../../when.csv; sourceTree = "<group>"; };
 		7CFA5E5C1D3654A800A2CD4C /* FirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -96,12 +96,12 @@
 		7C2E0ACC1D30EE2E002FD970 /* resource */ = {
 			isa = PBXGroup;
 			children = (
-				7C2E0ACD1D30EE5A002FD970 /* what.csv */,
-				7C2E0ACE1D30EE5A002FD970 /* how.csv */,
-				7C2E0ACF1D30EE5A002FD970 /* why.csv */,
-				7C2E0AD01D30EE5A002FD970 /* where.csv */,
-				7C2E0AD11D30EE5A002FD970 /* who.csv */,
-				7C2E0AD21D30EE5A002FD970 /* when.csv */,
+				7C4503E81D83D8AD005B2740 /* why.csv */,
+				7C4503E91D83D8AD005B2740 /* where.csv */,
+				7C4503EA1D83D8AD005B2740 /* who.csv */,
+				7C4503EB1D83D8AD005B2740 /* when.csv */,
+				7C4503E61D83D37D005B2740 /* how.csv */,
+				7C4503E41D83D355005B2740 /* what.csv */,
 			);
 			name = resource;
 			sourceTree = "<group>";
@@ -229,6 +229,7 @@
 				TargetAttributes = {
 					7C34A7861CAFC78600A2BFD3 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = 9KDPSC6W9G;
 					};
 					7C34A79A1CAFC78600A2BFD3 = {
 						CreatedOnToolsVersion = 7.2;
@@ -236,6 +237,7 @@
 					};
 					7C34A7A51CAFC78600A2BFD3 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = 9KDPSC6W9G;
 						TestTargetID = 7C34A7861CAFC78600A2BFD3;
 					};
 				};
@@ -266,14 +268,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C34A7951CAFC78600A2BFD3 /* LaunchScreen.storyboard in Resources */,
-				7C2E0AD61D30EE5A002FD970 /* where.csv in Resources */,
-				7C2E0AD41D30EE5A002FD970 /* how.csv in Resources */,
+				7C4503E71D83D37D005B2740 /* how.csv in Resources */,
+				7C4503EE1D83D8AD005B2740 /* who.csv in Resources */,
+				7C4503EC1D83D8AD005B2740 /* why.csv in Resources */,
+				7C4503ED1D83D8AD005B2740 /* where.csv in Resources */,
+				7C4503EF1D83D8AD005B2740 /* when.csv in Resources */,
+				7C4503E51D83D355005B2740 /* what.csv in Resources */,
 				7C34A7921CAFC78600A2BFD3 /* Assets.xcassets in Resources */,
-				7C2E0AD51D30EE5A002FD970 /* why.csv in Resources */,
-				7C2E0AD31D30EE5A002FD970 /* what.csv in Resources */,
 				7C34A7901CAFC78600A2BFD3 /* Main.storyboard in Resources */,
-				7C2E0AD71D30EE5A002FD970 /* who.csv in Resources */,
-				7C2E0AD81D30EE5A002FD970 /* when.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,6 +399,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
 		};
@@ -433,6 +436,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 2.3;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -441,11 +445,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 9KDPSC6W9G;
 				INFOPLIST_FILE = CAMERAAPP/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Suto.Kotaro.CAMERAAPP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
 		};
@@ -453,11 +459,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 9KDPSC6W9G;
 				INFOPLIST_FILE = CAMERAAPP/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Suto.Kotaro.CAMERAAPP;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Release;
 		};
@@ -488,6 +496,7 @@
 		7C34A7B61CAFC78600A2BFD3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEVELOPMENT_TEAM = 9KDPSC6W9G;
 				INFOPLIST_FILE = CAMERAAPPUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Suto.Kotaro.CAMERAAPPUITests;
@@ -500,6 +509,7 @@
 		7C34A7B71CAFC78600A2BFD3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEVELOPMENT_TEAM = 9KDPSC6W9G;
 				INFOPLIST_FILE = CAMERAAPPUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Suto.Kotaro.CAMERAAPPUITests;
